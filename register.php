@@ -14,6 +14,14 @@
 		<?php echo display_error(); ?>
 
 		<div class="input-group">
+			<label>Full Name</label>
+			<input type="text" name="name">
+		</div>
+		<div class="input-group">
+			<label>E-mail</label>
+			<input type="text" name="email">
+		</div>
+		<div class="input-group">
 			<label>Username</label>
 			<input type="text" name="username" value="<?php echo $username; ?>">
 		</div>
@@ -24,6 +32,10 @@
 		<div class="input-group">
 			<label>Confirm password</label>
 			<input type="password" name="password_2">
+		</div>
+		<div class="input-group">
+			<label>Phone Number</label>
+			<input type="text" name="phone">
 		</div>
 		<div class="input-group">
 			<button type="submit" class="btn" name="register_btn">Register</button>

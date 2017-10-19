@@ -6,6 +6,11 @@ To be ran on a local-webserver
 ### Completed
 
 * User registration
+    * Full Name
+    * Email
+    * Username
+    * Password
+    * Phone Number
 * Username/Password verification with MariaDB
 * Password encryption hash function
 * Input patient vitals button

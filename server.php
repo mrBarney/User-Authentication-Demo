@@ -47,13 +47,20 @@ function register()
 	$username    =  e($_POST['username']);
 	$password_1  =  e($_POST['password_1']);
 	$password_2  =  e($_POST['password_2']);
+	$email   	 =  e($_POST['email']);
+	$name   	 =  e($_POST['name']);
+	$phone  	 =  e($_POST['phone']);
 
-	// form validation: ensure that the form is correctly filled
-	if (empty($username)) { 
-		array_push($errors, "Username is required"); 
+	//eliminate every char except 0-9
+	$correctedPhone = preg_replace("/[^0-9]/", '', $phone);
+	//eliminate leading 1 if its there
+	if (strlen($correctedPhone) == 11) {
+		$correctedPhone = preg_replace("/^1/", '',$justNums);
 	}
-	if (empty($password_1)) { 
-		array_push($errors, "Password is required"); 
+
+	// form validation
+	if (empty($username) || empty($password_1) || empty($email) || empty($name) || empty($phone)) { 
+		array_push($errors, "The entire form must be completed"); 
 	}
 	if ($password_1 != $password_2) {
 		array_push($errors, "The two passwords do not match");
@@ -64,6 +71,27 @@ function register()
 	if(strlen($password_1) > 20 || strlen($password_1) < 6) {
 		array_push($errors, "Password must be between 6 and 20 characters");
 	}
+	if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+		array_push($errors, "Invalid e-mail format");
+	}
+	if (strlen($correctedPhone) != 10) {
+		array_push($errors, "Incorrect phone number");
+	}
+	//Probably a better way to do this
+	$query = "SELECT username FROM users WHERE username='$username'";
+	$result = mysqli_query($db, $query);
+	$r = mysqli_fetch_assoc($result);
+	if($r['username'] == $username) {
+		array_push($errors, "Username already exists");
+	}
+	$query = "SELECT email FROM users WHERE email='$email'";
+	$result = mysqli_query($db, $query);
+	$r = mysqli_fetch_assoc($result);
+	if($r['email'] == $email) {
+		array_push($errors, "Email already in use");
+	}
+
+	
 
 	// register user if there are no errors in the form
 	if (count($errors) == 0) {
@@ -71,13 +99,13 @@ function register()
 
 		if (isset($_POST['user_type'])) { // if user_type is defined, we know an admin is creating the account
 			$user_type = e($_POST['user_type']);
-			$query = "INSERT INTO users (username, user_type, password) VALUES('$username', '$user_type', '$password')"; // save creds in database
+			$query = "INSERT INTO users (username, full_name, email, phone_number, user_type, password) VALUES('$username', '$name', '$email', '$correctedPhone', '$user_type', '$password')"; // save creds in database
 			mysqli_query($db, $query);
 			$_SESSION['success']  = "User successfully created";
 			header('location: ../index.php');
 		}
 		else { // if user_type isn't defined, it's normal registration
-			$query = "INSERT INTO users (username, user_type, password) VALUES('$username', 'user', '$password')";
+			$query = "INSERT INTO users (username, full_name, email, phone_number, user_type, password) VALUES('$username', '$name', '$email', '$correctedPhone', 'user', '$password')";
 			mysqli_query($db, $query);
 			$logged_in_user_id = mysqli_insert_id($db); // get id of the created user
 			$_SESSION['user'] = getUserById($logged_in_user_id); // put logged in user in session

@@ -17,7 +17,7 @@
 		<?php echo display_error(); ?>
 
 		<div class="input-group">
-			<label>Username</label>
+			<label>UserID</label>
 			<input type="text" name="username">
 		</div>
 		<br>
