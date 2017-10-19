@@ -2,6 +2,7 @@
 
 To be ran on a local-webserver
 
+
 Completed -
 
 User registration
@@ -21,6 +22,7 @@ Failed login attempts counter
 Administrative priviledges and control panel
 
 Add/Delete user (only available as admin)
+
 
 
 TODO -
