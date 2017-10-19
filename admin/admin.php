@@ -46,7 +46,9 @@ if (isset($_GET['logout'])) {
 				</small>
 			</p>
 			<div>
-				<button type="submit" class="btn" name="patient_vitals_btn">Input Patient Vitals</button>
+				<a href="patient_data.php">
+					<button class="btn" name="patient_vitals_btn">Input Patient Vitals</button>
+				</a>
 				<a href="create_user.php">
 					<button class="btn" name="add_delete_user">+/- user</button>
 				</a>

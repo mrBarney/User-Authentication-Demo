@@ -53,6 +53,22 @@
 					<button type="submit" class="btn" name="heart_monitor_btn">Initiate Heart Monitor</button>
 				</a>
 			</div>
+			<h3 style="font-size: 15px;">Respiration Rate: 
+				<?php echo $_SESSION['user']['resp_rate']; ?>
+			</h3>
+			<h3 style="font-size: 15px;">Systolic Blood Pressure:
+				<?php echo $_SESSION['user']['resp_rate']; ?> mm Hg
+			</h3>
+			<h3 style="font-size: 15px;">Diastolic Blood Pressure:
+				<?php echo $_SESSION['user']['resp_rate']; ?> mm Hg
+			</h3>
+			<h3 style="font-size: 15px;">Pulse Rate: 
+				<?php echo $_SESSION['user']['resp_rate']; ?>
+			</h3>
+			<h3 style="font-size: 15px;">Body Temperature: 
+				<?php echo $_SESSION['user']['resp_rate']; ?>
+			</h3>
+			<br>
 			<small>
 				<p>
 					<a href="index.php?logout='1'" style="color: red;">logout</a>

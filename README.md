@@ -18,15 +18,15 @@ To be ran on a local-webserver
     * Registration page
     * Login page
     * Create/delete user page
-
-
-### TODO
-
 * Patient data 
     * Respiration rate
     * Blood Pressure (systolic/diastolic) 
     * Pulse rate`
     * Body Temperature (whether oral, tympanic, rectal, auxillary)
+
+
+### TODO
+
 * Patient data validation
 * Feedback for given data:
     * Body temp:

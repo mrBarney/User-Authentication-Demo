@@ -33,6 +33,11 @@ if (isset($_GET['logout'])) {
 	logout();
 }
 
+// when vital button is clicked
+if (isset($_POST['vital_btn'])) {
+	submitVitals();
+}
+
 // REGISTER USER
 function register()
 {
@@ -177,6 +182,30 @@ function delete()
 			}
 		}
 		
+}
+
+function submitVitals()
+{
+	global $db, $username, $errors;
+
+	$resp_rate = e($_POST['resp_rate']);
+	$sys_blood = e($_POST['sys_blood']);
+	$dia_blood = e($_POST['dia_blood']);
+	$pulse_rate = e($_POST['pulse_rate']);
+	$body_temp = e($_POST['body_temp']);
+	$username = e($_POST['username']);
+
+	// form validation
+	if (empty($username) || empty($resp_rate) || empty($sys_blood) || empty($dia_blood) || empty($pulse_rate) || empty($body_temp)) {
+		array_push($errors, "Please fill out the entire form");
+	}
+
+	if (count($errors) == 0) {
+		$query = "UPDATE users SET resp_rate='$resp_rate', sys_blood='$sys_blood', dia_blood='$dia_blood', pulse_rate='$pulse_rate', body_temp='$body_temp' WHERE username='$username'";
+		mysqli_query($db, $query);
+		$_SESSION['success']  = "Vitals Successfully Updated";
+		header('location: ../index.php');
+	}
 }
 
 function isAdmin()
