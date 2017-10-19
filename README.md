@@ -28,5 +28,5 @@ To be ran on a local-webserver
      * 100.4 - 103.9 FEVER in red
      * \>= 104.0 HYPERTHERMIA in flashing red
 * SSL
-    
+* Better file structure?
   
