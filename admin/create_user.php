@@ -3,7 +3,7 @@
 <html>
 <head>
 	<title>Admin Demonstration</title>
-	<link rel="stylesheet" href="../style.css">
+	<link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 	<div class="header">

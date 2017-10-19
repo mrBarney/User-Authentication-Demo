@@ -1,32 +1,47 @@
-* { margin: 0px; padding: 0px; }
-body {
-	font-size: 100%;
-	background: #F8F8FF;
+* {
+	margin: 0px;
+	padding: 0px;
 }
-.header {
-	width: 40%;
-	margin: 50px auto 0px;
+
+body {
+	font-size: 18px;
+	font-family: tahoma;
 	color: rgb(0, 0, 0);
-	text-align: center;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	background-image: url('../img/Lighthouse.jpg')
+}
+
+.header {
+	width: 450px;
+	margin: 50px auto 0px;
+	color: rgb(255, 255, 255);
+	text-align: left;
 	border: 1px solid #B0C4DE;
+	background: rgba(0, 0, 0, 0.432);
 	border-radius: 10px 10px 0px 0px;
 	padding: 20px;
 }
 
-form, .content {
-	width: 40%;
+form,
+.content {
+	width: 450px;
 	margin: 0px auto;
 	padding: 20px;
 	background: rgb(255, 255, 255);
 }
+
 .input-group {
 	margin: 10px 0px 10px 0px;
 }
+
 .input-group label {
 	display: block;
 	text-align: left;
 	margin: 3px;
 }
+
 .input-group input {
 	height: 30px;
 	width: 93%;
@@ -35,38 +50,44 @@ form, .content {
 	border-radius: 5px;
 	border: 1px solid gray;
 }
+
 #user_type {
 	height: 40px;
 	width: 98%;
 	padding: 5px 10px;
-	background: white;
+	background: rgb(255, 255, 255);
 	font-size: 16px;
 	border-radius: 5px;
 	border: 1px solid gray;
 }
+
 .btn {
 	padding: 10px;
 	font-size: 15px;
-	color: white;
+	color: rgb(255, 255, 255);
 	background: rgb(66, 134, 165);
 }
+
 .error {
-	width: 90%; 
-	margin: 0px auto; 
-	padding: 10px; 
-	color: #da2b28; 
-	background: #f3d5d5; 
-	border-radius: 5px; 
+	width: 90%;
+	margin: 0px auto;
+	padding: 10px;
+	color: #da2b28;
+	background: #f3d5d5;
+	border-radius: 5px;
 	text-align: center;
 }
+
 .success {
-	color: #3c763d; 
-	background: #dff0d8; 
+	color: #3c763d;
+	background: #dff0d8;
 	border: 1px solid #3c763d;
 	margin-bottom: 20px;
 }
+
 .info div {
-	display: inline-block; 
+	display: inline-block;
+	color: black;
 	margin: 5px;
 	padding: 10px;
 }

@@ -17,7 +17,7 @@ if (isset($_GET['logout'])) {
 
 <head>
 	<title>Home</title>
-	<link rel="stylesheet" href="../style.css">
+	<link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
@@ -39,29 +39,25 @@ if (isset($_GET['logout'])) {
 
 		<!-- logged in user information -->
 		<div class="info">
-				<?php  if (isset($_SESSION['user'])) : ?>
-				<strong>
-					<?php echo $_SESSION['user']['username']; ?>
-				</strong>
-
+			<?php  if (isset($_SESSION['user'])) : ?>
+			<p>
 				<small>
-					<i style="color: #888;">
-						<a href="../index.php">(return to index)</a>
-					</i>
+					<a href="../index.php">(return to index)</a>
 				</small>
-				<p>
-						<button type="submit" class="btn" name="patient_vitals_btn">Input Patient Vitals</button>
-				</p>
-				<small>
-					<p>
-						<a href="create_user.php"> +/- user</a>
-					</p>
-					<p>
-						<a href="admin.php?logout='1'" style="color: red;">logout</a>
-					</p>
-				</small>
-				<?php endif ?>
+			</p>
+			<div>
+				<button type="submit" class="btn" name="patient_vitals_btn">Input Patient Vitals</button>
+				<a href="create_user.php">
+					<button class="btn" name="add_delete_user">+/- user</button>
+				</a>
+			</div>
+			<p>
+				<a href="admin.php?logout='1'" style="color: red;">logout</a>
+			</p>
+			</small>
+			<?php endif ?>
 		</div>
 	</div>
 </body>
+
 </html>

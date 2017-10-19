@@ -56,7 +56,7 @@ function register()
 	if(strlen($username) > 24 || strlen($username) < 6) {
 		array_push($errors, "Username must be between 6 and 24 characters");
 	}
-	if(strlen($password_1) > 20 || strenlen($password < 6)) {
+	if(strlen($password_1) > 20 || strlen($password_1) < 6) {
 		array_push($errors, "Password must be between 6 and 20 characters");
 	}
 
@@ -76,7 +76,7 @@ function register()
 			mysqli_query($db, $query);
 			$logged_in_user_id = mysqli_insert_id($db); // get id of the created user
 			$_SESSION['user'] = getUserById($logged_in_user_id); // put logged in user in session
-			$_SESSION['success']  = "You are now logged in";
+			$_SESSION['success']  = "Welcome!";
 			header('location: index.php');				
 		}
 	}
@@ -113,7 +113,7 @@ function login()
 			$logged_in_user = mysqli_fetch_assoc($results); // get user info
 			
 			$_SESSION['user'] = $logged_in_user; // save user
-			$_SESSION['success']  = "You are now logged in";
+			$_SESSION['success']  = "Welcome!";
 			header('location: index.php');
 		}
 		else {
