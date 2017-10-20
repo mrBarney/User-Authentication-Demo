@@ -20,10 +20,18 @@
 			<label>UserID</label>
 			<input type="text" name="username">
 		</div>
-		<br>
 		<div class="input-group">
 			<label>Password</label>
 			<input type="password" name="password">
+		</div>
+		<br>
+		<div class="input-group">
+			<label>Class</label>
+			<input type="text" name="class" value="not implemented">
+		</div>
+		<div class="input-group">
+			<label>AuthCode</label>
+			<input type="text" name="auth_code" value="not implemented">
 		</div>
 		<br>
 		<div class="input-group">

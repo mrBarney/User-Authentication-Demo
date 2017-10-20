@@ -23,9 +23,10 @@
 		<a href="admin.php">(return to admin page)</a>
 		<?php echo display_error(); ?>
 
-		<div class="input-group">
+		<div class="patient">
 			<label>Choose user</label>
 			<select name="username" id="user_type">
+				<option value=""></option>
 				<?php
 				$query = "SELECT * FROM users";
 				$result = mysqli_query($db,$query);
@@ -34,27 +35,34 @@
 				<?php } ?>
 			</select>
 		</div>
-		<div class="input-group">
+		<br>
+		<div class="patient">
 			<label>Respiration Rate (breaths per minute)</label>
-			<input type="text" name="resp_rate">
+			<br>
+			<input type="text" name="resp_rate" value="<?php echo $_SESSION['user']['resp_rate']?>">
 		</div>
-		<div class="input-group">
-			<label>Systolic Blood Pressure (mm Hg)</label>
-			<input type="text" name="sys_blood">
-        </div>
-        <div class="input-group">
-			<label>Diastolic Blood Pressure (mm Hg)</label>
-			<input type="text" name="dia_blood">
+		<br>
+		<div class="patient">
+			<label>Blood Pressure</label>
+			<br>
+			<label>Systolic </label>
+			<input type="text" name="sys_blood" value="<?php echo $_SESSION['user']['sys_blood']?>">
+			<label>Diastolic </label>
+			<input type="text" name="dia_blood" value="<?php echo $_SESSION['user']['dia_blood']?>">
 		</div>
-		<div class="input-group">
+		<br>
+		<div class="patient">
 			<label>Pulse Rate (beats per minute)</label>
-			<input type="text" name="pulse_rate">
+			<br>
+			<input type="text" name="pulse_rate" value="<?php echo $_SESSION['user']['pulse_rate']?>">
         </div>
-        <div class="input-group">
+        <div class="patient">
 			<label>Body Temperature (fahrenheit)</label>
-			<input type="text" name="body_temp">
+			<br>
+			<input type="text" name="body_temp" value="<?php echo $_SESSION['user']['body_temp']?>">
 		</div>
-		<div class="input-group">
+		<br>
+		<div class="patient">
 			<button type="submit" class="btn" name="vital_btn">Submit</button>
 		</div>
     </form>

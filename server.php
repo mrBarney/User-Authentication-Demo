@@ -77,21 +77,18 @@ function register()
 	if (strlen($correctedPhone) != 10) {
 		array_push($errors, "Incorrect phone number");
 	}
+
 	//Probably a better way to do this
-	$query = "SELECT username FROM users WHERE username='$username'";
-	$result = mysqli_query($db, $query);
+	$result = mysqli_query($db, "SELECT username FROM users WHERE username='$username'");
 	$r = mysqli_fetch_assoc($result);
 	if($r['username'] == $username) {
 		array_push($errors, "Username already exists");
 	}
-	$query = "SELECT email FROM users WHERE email='$email'";
-	$result = mysqli_query($db, $query);
+	$result = mysqli_query($db, "SELECT email FROM users WHERE email='$email'");
 	$r = mysqli_fetch_assoc($result);
 	if($r['email'] == $email) {
 		array_push($errors, "Email already in use");
 	}
-
-	
 
 	// register user if there are no errors in the form
 	if (count($errors) == 0) {
@@ -144,9 +141,8 @@ function login()
 			mysqli_query($db, $query);
 			
 			$logged_in_user = mysqli_fetch_assoc($results); // get user info
-			
 			$_SESSION['user'] = $logged_in_user; // save user
-			$_SESSION['success']  = "Welcome!";
+			
 			header('location: index.php');
 		}
 		else {
@@ -227,10 +223,20 @@ function submitVitals()
 	if (empty($username) || empty($resp_rate) || empty($sys_blood) || empty($dia_blood) || empty($pulse_rate) || empty($body_temp)) {
 		array_push($errors, "Please fill out the entire form");
 	}
+	if (!is_numeric ($resp_rate) || !is_numeric ($sys_blood) || !is_numeric ($dia_blood) || !is_numeric ($pulse_rate) || !is_numeric ($body_temp)) {
+		array_push($errors, "Only numbers are accepted");
+	}
 
 	if (count($errors) == 0) {
 		$query = "UPDATE users SET resp_rate='$resp_rate', sys_blood='$sys_blood', dia_blood='$dia_blood', pulse_rate='$pulse_rate', body_temp='$body_temp' WHERE username='$username'";
 		mysqli_query($db, $query);
+		
+		// update session with new data
+		$query = "SELECT * FROM users WHERE username='$username'";
+		$results = mysqli_query($db, $query);
+		$logged_in_user = mysqli_fetch_assoc($results); // get user info
+		$_SESSION['user'] = $logged_in_user; // save user
+
 		$_SESSION['success']  = "Vitals Successfully Updated";
 		header('location: ../index.php');
 	}

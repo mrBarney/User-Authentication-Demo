@@ -28,17 +28,16 @@ To be ran on a local-webserver
     * Blood Pressure (systolic/diastolic) 
     * Pulse rate`
     * Body Temperature (whether oral, tympanic, rectal, auxillary)
+* Patient data validation
+* Feedback for given data:
+    * NORMAL in green
+    * MODERATE in yellow
+    * HIGH in red
+    * DANGER in flashing red
 
 
 ### TODO
 
-* Patient data validation
-* Feedback for given data:
-    * Body temp:
-    * 97.7 - 99.5 NORMAL in green
-    * 99.6 - 100.3 CHECK FOR FEVER in yellow
-    * 100.4 - 103.9 FEVER in red
-    * \>= 104.0 HYPERTHERMIA in flashing red
 * SSL
 * Better file structure?
   

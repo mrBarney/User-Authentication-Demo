@@ -51,6 +51,24 @@ form,
 	border: 1px solid gray;
 }
 
+.patient {
+	margin: 10px 0px 10px 0px;
+}
+
+.patient label {
+	text-align: left;
+	margin: 3px;
+}
+
+.patient input {
+	height: 25px;
+	width: 20%;
+	padding: 5px 10px;
+	font-size: 16px;
+	border-radius: 5px;
+	border: 1px solid gray;
+}
+
 #user_type {
 	height: 40px;
 	width: 98%;
@@ -60,6 +78,20 @@ form,
 	border-radius: 5px;
 	border: 1px solid gray;
 }
+
+.flash {
+	animation-name: flash;
+	 animation-duration: 0.2s;
+	 animation-timing-function: linear;
+	 animation-iteration-count: infinite;
+	 animation-direction: alternate;
+	 animation-play-state: running;
+ }
+ 
+ @keyframes flash {
+	 from {color: red;}
+	 to {color: rgb(255, 169, 169);}
+ }
 
 .btn {
 	padding: 10px;
