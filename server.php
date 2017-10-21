@@ -187,7 +187,7 @@ function submitVitals()
 
 	// form validation
 	if (empty($username) || empty($resp_rate) || empty($sys_blood) || empty($dia_blood) || empty($pulse_rate) || empty($body_temp)) {
-		array_push($errors, $username);
+		array_push($errors, "The entire form must be filled out");
 	}
 	if (!is_numeric ($resp_rate) || !is_numeric ($sys_blood) || !is_numeric ($dia_blood) || !is_numeric ($pulse_rate) || !is_numeric ($body_temp)) {
 		array_push($errors, "Only numbers are accepted");
