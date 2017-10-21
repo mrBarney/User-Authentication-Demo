@@ -7,35 +7,9 @@ $db = mysqli_connect('192.168.64.2', 'root', '', 'registration');
 $username = "";
 $errors   = array(); 
 
-// when register button is clicked
-if (isset($_POST['register_btn'])) {
-	register();
-}
-
-// when heart monitor button is clicked
-if (isset($_POST['heart_monitor_btn'])){
-	$_SESSION['success']  = "File successfully executed";
-	header('location: success.php');
-}
-
-// when login button is clicked
-if (isset($_POST['login_btn'])) {
-	login();
-}
-
-// when delete user button is clicked
-if (isset($_POST['delete_btn'])) {
-	delete();
-}
-
 // when logout button is clicked
 if (isset($_GET['logout'])) {
 	logout();
-}
-
-// when vital button is clicked
-if (isset($_POST['vital_btn'])) {
-	submitVitals();
 }
 
 // REGISTER USER
@@ -78,16 +52,10 @@ function register()
 		array_push($errors, "Incorrect phone number");
 	}
 
-	//Probably a better way to do this
-	$result = mysqli_query($db, "SELECT username FROM users WHERE username='$username'");
-	$r = mysqli_fetch_assoc($result);
-	if($r['username'] == $username) {
-		array_push($errors, "Username already exists");
-	}
-	$result = mysqli_query($db, "SELECT email FROM users WHERE email='$email'");
-	$r = mysqli_fetch_assoc($result);
-	if($r['email'] == $email) {
-		array_push($errors, "Email already in use");
+	// check if username/email already exists
+	$result = mysqli_query($db, "SELECT username, email FROM users WHERE username='$username' OR email='$email'");
+	if(mysqli_num_rows($results) >= 1) {
+		array_push($errors, "Username or email already exists");
 	}
 
 	// register user if there are no errors in the form
@@ -140,8 +108,7 @@ function login()
 			$query = "UPDATE users SET failed_login_attempts = 0 WHERE username='$username'"; 
 			mysqli_query($db, $query);
 			
-			$logged_in_user = mysqli_fetch_assoc($results); // get user info
-			$_SESSION['user'] = $logged_in_user; // save user
+			$_SESSION['user'] = mysqli_fetch_assoc($results); // get session info
 			
 			header('location: index.php');
 		}
@@ -205,12 +172,11 @@ function delete()
 				array_push($errors, "Incorrect username or password");
 			}
 		}
-		
 }
 
 function submitVitals()
 {
-	global $db, $username, $errors;
+	global $db, $errors;
 
 	$resp_rate = e($_POST['resp_rate']);
 	$sys_blood = e($_POST['sys_blood']);
@@ -221,7 +187,7 @@ function submitVitals()
 
 	// form validation
 	if (empty($username) || empty($resp_rate) || empty($sys_blood) || empty($dia_blood) || empty($pulse_rate) || empty($body_temp)) {
-		array_push($errors, "Please fill out the entire form");
+		array_push($errors, $username);
 	}
 	if (!is_numeric ($resp_rate) || !is_numeric ($sys_blood) || !is_numeric ($dia_blood) || !is_numeric ($pulse_rate) || !is_numeric ($body_temp)) {
 		array_push($errors, "Only numbers are accepted");
@@ -234,8 +200,10 @@ function submitVitals()
 		// update session with new data
 		$query = "SELECT * FROM users WHERE username='$username'";
 		$results = mysqli_query($db, $query);
-		$logged_in_user = mysqli_fetch_assoc($results); // get user info
-		$_SESSION['user'] = $logged_in_user; // save user
+
+		if($_SESSION['user']['username'] == $username) { // if logged in, update session
+			$_SESSION['user'] = mysqli_fetch_assoc($results); 
+		}
 
 		$_SESSION['success']  = "Vitals Successfully Updated";
 		header('location: ../index.php');

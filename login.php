@@ -1,4 +1,12 @@
-<?php include('server.php') ?>
+<?php 
+	include('server.php');
+
+	// when login button is clicked
+	if (isset($_POST['login_btn'])) {
+		login();
+	}
+?>
+
 <!DOCTYPE html>
 <html>
 

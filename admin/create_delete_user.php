@@ -1,4 +1,17 @@
-<?php include('../server.php') ?>
+<?php 
+	include('../server.php'); 
+
+	if (!isAdmin()) {
+		$_SESSION['msg'] = "You must be an administrator to view this page";
+		header('location: ../index.php');
+	}
+	
+	// when delete user button is clicked
+	if (isset($_POST['delete_btn'])) {
+		delete();
+	}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +22,7 @@
 	<div class="header">
 		<h2>Admin - create/delete user</h2>
 	</div>
-	<form method="post" action="create_user.php">
+	<form method="post" action="create_delete_user.php">
 	<a href="admin.php">(return to admin page)</a>
 		<?php echo display_error(); ?>
 
@@ -57,7 +70,7 @@
 		</div>
 	</form>
 
-	<form method="post" action="create_user.php">
+	<form method="post" action="create_delete_user.php">
 
 		<div class="input-group">
 			<label>Username</label>

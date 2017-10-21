@@ -1,16 +1,16 @@
 <?php 
-include('../server.php');
+	include('../server.php');
 
-if (!isAdmin()) {
-	$_SESSION['msg'] = "You must log in first";
-	header('location: ../login.php');
-}
+	if (!isAdmin()) {
+		$_SESSION['msg'] = "You must log in first";
+		header('location: ../login.php');
+	}
 
-if (isset($_GET['logout'])) {
-	session_destroy();
-	unset($_SESSION['user']);
-	header("location: ../login.php");
-}
+	if (isset($_GET['logout'])) {
+		session_destroy();
+		unset($_SESSION['user']);
+		header("location: ../login.php");
+	}
 ?>
 <!DOCTYPE html>
 <html>
@@ -49,7 +49,7 @@ if (isset($_GET['logout'])) {
 				<a href="patient_data.php">
 					<button class="btn" name="patient_vitals_btn">Input Patient Vitals</button>
 				</a>
-				<a href="create_user.php">
+				<a href="create_delete_user.php">
 					<button class="btn" name="add_delete_user">+/- user</button>
 				</a>
 			</div>

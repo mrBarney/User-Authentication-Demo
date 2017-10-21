@@ -1,4 +1,12 @@
-<?php include('server.php') ?>
+<?php 
+include('server.php');
+
+	// when register button is clicked
+	if (isset($_POST['register_btn'])) {
+		register();
+	}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>

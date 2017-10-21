@@ -5,6 +5,15 @@
 		$_SESSION['msg'] = "You must log in first";
 		header('location: login.php');
 	}
+
+	// when heart monitor button is clicked
+	if (isset($_POST['heart_monitor_btn'])) {
+		$_SESSION['success']  = "File successfully executed";
+		header('location: success.php');
+	}
+
+	$name = explode(" ", $_SESSION['user']['full_name']);
+	
 ?>
 <!DOCTYPE html>
 <html>
@@ -36,7 +45,7 @@
 		<div class="info">
 			<?php  if (isset($_SESSION['user'])) : ?>
 			<h3>Hi
-				<?php echo $_SESSION['user']['full_name']; ?>!
+				<?php echo $name[0]; ?>!
 				<small>
 					<?php if(isAdmin()) : ?>
 					<i style="font-size: 15px; font-weight: normal;">
@@ -66,6 +75,8 @@
 			</h3>
 			<? endif ?>
 
+			<br>
+
 			<?php  if ($_SESSION['user']['sys_blood'] <= 80 || $_SESSION['user']['dia_blood'] <= 60) : ?>
 			<h3 style="font-size: 15px; color: rgb(180, 243, 64);">Blood Pressure:
 				<?php echo $_SESSION['user']['sys_blood'];?>/<?php echo $_SESSION['user']['dia_blood'];?>
@@ -94,9 +105,11 @@
 			<? elseif($_SESSION['user']['sys_blood'] >= 180 || $_SESSION['user']['dia_blood'] >= 110) : ?>
 			<h3 class="flash">Blood Pressure:
 				<?php echo $_SESSION['user']['sys_blood'];?>/<?php echo $_SESSION['user']['dia_blood'];?>
-				<i>(hypertension) - seek emergency care</i>
+				<i>(hypertension)</i>
 			</h3>
 			<? endif ?>
+
+			<br>
 
 			<?php  if ($_SESSION['user']['pulse_rate'] >= 20 && $_SESSION['user']['pulse_rate'] <= 100) : ?>
 			<h3 style="font-size: 15px; color: green;">Pulse Rate: 
@@ -109,6 +122,8 @@
 				<i>(high)</i>
 			</h3>
 			<? endif ?>
+
+			<br>
 
 			<?php  if ($_SESSION['user']['body_temp'] >= 97.7 && $_SESSION['user']['body_temp'] <= 99.5) : ?>
 			<h3 style="font-size: 15px; color: green;">Body Temperature: 
@@ -133,6 +148,7 @@
 			<? endif ?>
 
 			<br>
+
 			<small>
 				<p>
 					<a href="index.php?logout='1'" style="color: red;">logout</a>
