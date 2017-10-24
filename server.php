@@ -243,7 +243,7 @@ function display_error()
 	global $errors;
 
 	if (count($errors) > 0){
-		echo '<div class="error">';
+		echo '<div style="width: 90%; margin: 10px 10px 0px; padding: 10px; color: #da2b28; background: #f3d5d5; border-radius: 5px; text-align: center;">';
 			foreach ($errors as $error){
 				echo $error .'<br>';
 			}
