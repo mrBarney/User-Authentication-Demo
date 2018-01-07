@@ -5,7 +5,7 @@ To be ran on a local-webserver
 
 ### Completed
 
-* User registration
+* Full User registration
     * Full Name
     * Email
     * Username
@@ -36,8 +36,9 @@ To be ran on a local-webserver
     * DANGER in flashing red
 
 
-### TODO
+### Description
 
-* SSL
-* Better file structure?
+This website was a freelance project as a front end/template for a larger system for use by nurses and medical facilities. This is not a finished project and has multiple security issues. Feel free to use any part of this project for your own.
+
+![Login Page](/img/login.png)
   
